@@ -15,4 +15,9 @@ public class Employee {
     private String surname;
     private String middleName;
     private String email;
+
+    public Employee() {
+    }
 }
+
+
