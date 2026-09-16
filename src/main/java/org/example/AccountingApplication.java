@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.Month;
+
 @SpringBootApplication
 public class AccountingApplication {
 
@@ -20,9 +23,11 @@ class MyCommandLineRunner implements CommandLineRunner {
 
     private final EmployeeService employeeService;
 
-    MyCommandLineRunner(EmployeeService employeeService) {
+    MyCommandLineRunner(EmployeeService employeeService, EquipmentService equipmentService) {
         this.employeeService = employeeService;
+        this.equipmentService = equipmentService;
     }
+    private  final  EquipmentService equipmentService;
 
     @Override
 
@@ -40,6 +45,17 @@ class MyCommandLineRunner implements CommandLineRunner {
         employeeService.addEmployee(employee1);
         System.out.println(employeeService.getAllEmployee());
         System.out.println(employeeService.getEmployeeById(1L));
+
+        Equipment equipment1= new Equipment();
+        equipment1.setCurrentEmployee(employee1);
+        equipment1.setType(Type.LAPTOP);
+        equipment1.setModel("Asus");
+        equipment1.setSerialNumber("jefbwejkfbwhj341234");
+        equipment1.setPurchaseDate(LocalDate.now());
+        equipment1.setStatus(Status.IN_REPAIR);
+        equipmentService.addEquipment(equipment1);
+        System.out.println(equipmentService.getAllEquipment());
+        System.out.println(equipmentService.getEquipmentById(1L));
     }
 }
 

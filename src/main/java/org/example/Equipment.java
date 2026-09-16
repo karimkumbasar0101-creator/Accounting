@@ -10,13 +10,16 @@ public class Equipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
     private String model;
     private String serialNumber;
-    private LocalDate data;
-    private String status;
+    private LocalDate purchaseDate;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @ManyToOne Employee currentEmployee;
     public Equipment(){
 
     }
+
 }
