@@ -6,13 +6,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
 public class EquipmentService {
 
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private final EquipmentRepository  equipmentRepository;
     private final EmployeeRepository employeeRepository;
     private final EquipmentHistoryRepository equipmentHistoryRepository;
@@ -141,6 +144,6 @@ public class EquipmentService {
         return equipment;
     }
 
+
     }
 
-}
