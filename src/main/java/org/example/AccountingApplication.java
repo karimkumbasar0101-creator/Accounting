@@ -25,11 +25,13 @@ class MyCommandLineRunner implements CommandLineRunner {
     private final EmployeeService employeeService;
     private  final  EquipmentService equipmentService;
     private final EquipmentHistoryService equipmentHistoryService;
+    private EquipmentHistoryService historyService;
 
     MyCommandLineRunner(EmployeeService employeeService, EquipmentService equipmentService, EquipmentHistoryService equipmentHistoryService) {
         this.employeeService = employeeService;
         this.equipmentService = equipmentService;
         this.equipmentHistoryService = equipmentHistoryService;
+        this.historyService = equipmentHistoryService;
     }
 
 
@@ -40,38 +42,26 @@ class MyCommandLineRunner implements CommandLineRunner {
         for (String arg : args) {
             System.out.println(arg);
         }
-        Employee employee1 = new Employee();
+        Employee employee = new Employee();
+        employee.setName("Даниил");
+        employee.setSurname("Рыбалкин");
+        employee.setEmail("12345@mail.com");
+        employeeService.addEmployee(employee);
 
-        employee1.setName("Даниил");
-        employee1.setSurname("Рыбалкин");
-        employee1.setMiddleName("Олегович");
-        employee1.setEmail("123@.mail.com");
-        employeeService.addEmployee(employee1);
-        System.out.println(employeeService.getAllEmployee());
-        System.out.println(employeeService.getEmployeeById(1L));
+        Equipment eq = new Equipment();
+        eq.setType(Type.LAPTOP);
+        eq.setModel("Ноутбук");
+        eq.setSerialNumber("123455");
+        eq.setPurchaseDate(LocalDate.now());
+        eq.setStatus(Status.IN_STOCK);
+        equipmentService.addEquipment(eq);
 
-        Equipment equipment1= new Equipment();
-        equipment1.setCurrentEmployee(employee1);
-        equipment1.setType(Type.LAPTOP);
-        equipment1.setModel("Asus");
-        equipment1.setSerialNumber("jefbwejkfbwhj341234");
-        equipment1.setPurchaseDate(LocalDate.now());
-        equipment1.setStatus(Status.IN_REPAIR);
-        equipmentService.addEquipment(equipment1);
-        System.out.println(equipmentService.getAllEquipment());
-        System.out.println(equipmentService.getEquipmentById(1L));
+        equipmentService.issueEquipment(eq.getId(), employee.getId());
 
-        EquipmentHistory eh1 = new EquipmentHistory();
-        eh1.setEquipment(equipment1);
-        eh1.setEmployee(employee1);
-        eh1.setChangedAt(LocalDateTime.now());
-        eh1.setOldStatus(Status.ISSUED);
-        eh1.setNewStatus(Status.IN_REPAIR);
-        eh1.setAction(Action.REPAIR_END);
-        eh1.setComment("Ремонт");
-        equipmentHistoryService.addRecord(eh1);
-        equipmentHistoryService.getAllHistory();
-        equipmentHistoryService.getHistoryByEquipment(2L);
+        System.out.println("После выдачи:");
+        System.out.println(equipmentService.getEquipmentById(eq.getId()));
+        System.out.println("История:");
+        System.out.println(historyService.getHistoryByEquipment(eq.getId()));
 
     }
 }
