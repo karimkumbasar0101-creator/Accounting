@@ -7,6 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 @SpringBootApplication
@@ -22,12 +23,15 @@ public class AccountingApplication {
 class MyCommandLineRunner implements CommandLineRunner {
 
     private final EmployeeService employeeService;
+    private  final  EquipmentService equipmentService;
+    private final EquipmentHistoryService equipmentHistoryService;
 
-    MyCommandLineRunner(EmployeeService employeeService, EquipmentService equipmentService) {
+    MyCommandLineRunner(EmployeeService employeeService, EquipmentService equipmentService, EquipmentHistoryService equipmentHistoryService) {
         this.employeeService = employeeService;
         this.equipmentService = equipmentService;
+        this.equipmentHistoryService = equipmentHistoryService;
     }
-    private  final  EquipmentService equipmentService;
+
 
     @Override
 
@@ -56,6 +60,19 @@ class MyCommandLineRunner implements CommandLineRunner {
         equipmentService.addEquipment(equipment1);
         System.out.println(equipmentService.getAllEquipment());
         System.out.println(equipmentService.getEquipmentById(1L));
+
+        EquipmentHistory eh1 = new EquipmentHistory();
+        eh1.setEquipment(equipment1);
+        eh1.setEmployee(employee1);
+        eh1.setChangedAt(LocalDateTime.now());
+        eh1.setOldStatus(Status.ISSUED);
+        eh1.setNewStatus(Status.IN_REPAIR);
+        eh1.setAction(Action.REPAIR_END);
+        eh1.setComment("Ремонт");
+        equipmentHistoryService.addRecord(eh1);
+        equipmentHistoryService.getAllHistory();
+        equipmentHistoryService.getHistoryByEquipment(2L);
+
     }
 }
 

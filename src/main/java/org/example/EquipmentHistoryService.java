@@ -11,14 +11,15 @@ public class EquipmentHistoryService {
 
     private final EquipmentHistoryRepository equipmentHistoryRepository;
 
-    public EquipmentHistory AddRecord(EquipmentHistory  record){
+    public EquipmentHistory addRecord(EquipmentHistory record) {
         return equipmentHistoryRepository.save(record);
     }
 
-    public List<EquipmentHistory> allEquipmentHistory(Long equipmentId){
-        return equipmentHistoryRepository.findAll();
-    }
     public List<EquipmentHistory> getAllHistory() {
         return equipmentHistoryRepository.findAll();
+    }
+
+    public List<EquipmentHistory> getHistoryByEquipment(Long equipmentId) {
+        return equipmentHistoryRepository.findByEquipmentIdOrderByChangedAtAsc(equipmentId);
     }
 }
