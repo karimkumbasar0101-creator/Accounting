@@ -1,6 +1,8 @@
-package org.example;
+package org.example.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.entity.EquipmentHistory;
+import org.example.repository.EquipmentHistoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

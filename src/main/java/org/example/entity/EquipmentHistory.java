@@ -1,7 +1,9 @@
-package org.example;
+package org.example.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.example.enumType.Action;
+import org.example.enumType.Status;
 
 import java.time.LocalDateTime;
 

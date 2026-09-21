@@ -25,34 +25,29 @@
   </properties>
 
   <dependencies>
-    <!-- Основной стартер Spring Boot (без веб-сервера) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
-
-    <!-- Spring Data JPA для работы с БД -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
-
-    <!-- Драйвер PostgreSQL -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <scope>runtime</scope>
     </dependency>
-
-    <!-- Lombok — сокращает написание геттеров/сеттеров/конструкторов -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <optional>true</optional>
     </dependency>
-
-    <!-- Тесты (JUnit 5, Mockito, AssertJ и др.) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -62,7 +57,6 @@
 
   <build>
     <plugins>
-      <!-- Плагин для сборки исполняемого jar и запуска Spring Boot -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

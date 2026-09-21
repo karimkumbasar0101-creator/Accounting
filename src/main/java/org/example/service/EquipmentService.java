@@ -1,8 +1,16 @@
-package org.example;
+package org.example.service;
 
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.example.entity.Employee;
+import org.example.entity.Equipment;
+import org.example.entity.EquipmentHistory;
+import org.example.enumType.Action;
+import org.example.enumType.Status;
+import org.example.repository.EmployeeRepository;
+import org.example.repository.EquipmentHistoryRepository;
+import org.example.repository.EquipmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,7 +24,7 @@ import java.util.Optional;
 public class EquipmentService {
 
     private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private final EquipmentRepository  equipmentRepository;
+    private final EquipmentRepository equipmentRepository;
     private final EmployeeRepository employeeRepository;
     private final EquipmentHistoryRepository equipmentHistoryRepository;
     public Equipment addEquipment(Equipment equipment){
@@ -31,6 +39,9 @@ public class EquipmentService {
     }
     public Optional<Equipment> findBySerialNumber(String serialNumber) {
         return equipmentRepository.findBySerialNumber(serialNumber);
+    }
+    public List<EquipmentHistory> getHistoryByEquipment(Long equipmentId) {
+        return equipmentHistoryRepository.findByEquipmentIdOrderByChangedAtAsc(equipmentId);
     }
 
     public List<Equipment> findByStatus(Status status) {

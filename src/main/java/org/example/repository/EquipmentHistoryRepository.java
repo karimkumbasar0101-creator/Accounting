@@ -1,5 +1,6 @@
-package org.example;
+package org.example.repository;
 
+import org.example.entity.EquipmentHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

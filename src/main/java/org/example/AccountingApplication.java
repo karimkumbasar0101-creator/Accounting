@@ -1,5 +1,12 @@
 package org.example;
 
+import org.example.entity.Employee;
+import org.example.entity.Equipment;
+import org.example.enumType.Status;
+import org.example.enumType.Type;
+import org.example.service.EmployeeService;
+import org.example.service.EquipmentHistoryService;
+import org.example.service.EquipmentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +14,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 
 @SpringBootApplication
 public class AccountingApplication {
@@ -23,7 +28,7 @@ public class AccountingApplication {
 class MyCommandLineRunner implements CommandLineRunner {
 
     private final EmployeeService employeeService;
-    private  final  EquipmentService equipmentService;
+    private  final EquipmentService equipmentService;
     private final EquipmentHistoryService equipmentHistoryService;
     private EquipmentHistoryService historyService;
 

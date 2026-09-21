@@ -1,6 +1,14 @@
 package org.example;
 
 import lombok.RequiredArgsConstructor;
+import org.example.entity.Employee;
+import org.example.entity.Equipment;
+import org.example.entity.EquipmentHistory;
+import org.example.enumType.Status;
+import org.example.enumType.Type;
+import org.example.service.EmployeeService;
+import org.example.service.EquipmentHistoryService;
+import org.example.service.EquipmentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.format.DateTimeFormatter;
@@ -9,8 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-
-@Component
+//@Component
 @RequiredArgsConstructor
 public class ConsoleMenu implements CommandLineRunner {
 

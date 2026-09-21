@@ -1,5 +1,7 @@
-package org.example;
+package org.example.service;
 import lombok.RequiredArgsConstructor;
+import org.example.entity.Employee;
+import org.example.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
